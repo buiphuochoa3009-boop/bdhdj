@@ -1,0 +1,42 @@
+local OrionLib = loadstring(game:HttpGet(('https://githubusercontent.com')))()
+local Window = OrionLib:MakeWindow({Name = "Menu Việt Nam", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionConfig"})
+
+local Tab = Window:MakeTab({
+    Name = "Chức Năng",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+Tab:AddToggle({
+    Name = "Tự Động Đánh (Auto Farm)",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoFarm = Value
+        while _G.AutoFarm do
+            task.wait(0.1)
+            -- Code chức năng game viết tại đây
+        end
+    end    
+})
+
+Tab:AddSlider({
+    Name = "Tốc Độ Chạy (Walkspeed)",
+    Min = 16,
+    Max = 150,
+    Default = 16,
+    Color = Color3.fromRGB(255,255,255),
+    Increment = 1,
+    ValueName = "Tốc độ",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end    
+})
+
+Tab:AddButton({
+    Name = "Nhận Vật Phẩm",
+    Callback = function()
+        OrionLib:MakeNotification({Name = "Thông Báo", Text = "Nhận thành công!", Time = 5})
+    end
+})
+
+OrionLib:Init()
